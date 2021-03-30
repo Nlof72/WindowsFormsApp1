@@ -23,13 +23,12 @@ namespace WindowsFormsApp1
 
         private void Start_Click(object sender, EventArgs e)
         {
-            chart1.Series[0].Points.Clear();
             j = 0;
             activePeople = new ActivePeople((float)CurrentLifeInp.Value, (float)LifeLevInp.Value, (int)PopulationInp.Value);
             activePeople.CalcActive();
             election = new Election((int)CandidatesInp.Value, (int)MistakeInp.Value, (int)ConditionsInp.Value, activePeople.GetActivePeople());
             timer1.Start();
-            if (chart1.Series.Count == 1) chart1.Series.RemoveAt(0);
+            chart1.Series.Clear();
             for (int i = 0; i < (int)CandidatesInp.Value; i++)
             {
                 chart1.Series.Add("Candidate "+ i);
