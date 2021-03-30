@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         Random random = new Random();
         List<float> statistics1 = new List<float>();
         public double[] voices;
+        private int duration;
 
 
         public Election(int Candidates, int mistakeLevel, int Condition, int electorat)

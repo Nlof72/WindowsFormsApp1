@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1.Scripts
 {
-    public class Statistics
+   public class Statistics
     {
         public readonly int candidates;
         public int electorate;
@@ -39,7 +39,7 @@ namespace WindowsFormsApp1.Scripts
             {
                 for (int i = 0; i < candidates; i++)
                 {
-                    voicesPerHour = random.Next(0, FinalVoices[i] - (int)(FinalVoices[i] * 0.7));
+                    voicesPerHour = random.Next(0, FinalVoices[i]-(int)(FinalVoices[i]*0.7));
                     interimVoices[i] += voicesPerHour;
                     FinalVoices[i] -= voicesPerHour;
                 }
