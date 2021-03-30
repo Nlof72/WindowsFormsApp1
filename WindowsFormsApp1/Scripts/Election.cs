@@ -88,8 +88,6 @@ namespace WindowsFormsApp1
             GenerateSeq();
 
             float[] arr = statistics1.ToArray();
-            statistics1 = arr.ToList<float>(); 
-            arr = statistics1.ToArray();
             for(int i =0; i < statistics.candidates; i++)
             {
                 voices[i] = arr[i] * statistics.electorate / 100;
