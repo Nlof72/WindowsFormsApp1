@@ -14,9 +14,9 @@ namespace WindowsFormsApp1
         private readonly int Condition;
 
         public readonly Statistics statistics;
-        private readonly Random _random = new Random();
-        private int duration;
-        private List<float> FinalResults = new List<float>();
+        Random random = new Random();
+        List<float> statistics1 = new List<float>();
+        public double[] voices;
 
 
         public Election(int Candidates, int mistakeLevel, int Condition, int electorat)
@@ -24,59 +24,70 @@ namespace WindowsFormsApp1
             statistics = new Statistics(electorat, Candidates, duration);
             MistakeLevel = mistakeLevel;
             this.Condition = Condition;
+            voices = new double[statistics.candidates];
         }
 
-        private void GenerateResults()
+        //public double NextGaussian(Random r, double mean = 0, double stdDev = 1)
+        //{
+        //    var u1 = random.Next(0, Candidates);
+        //    var u2 = random.Next(0, Candidates);
+
+        //    var rand_std_normal = Math.Sqrt(-2.0 * Math.Log(u1)) *
+        //                          Math.Sin(2.0 * Math.PI * u2);
+
+        //    var rand_normal = mean + stdDev * rand_std_normal;
+
+        //    return rand_normal;
+        //}
+
+
+        void GenerateSeq()
         {
             int n = 1000;
             if (statistics.candidates >= 5)
                 for (int i = 0; i < statistics.candidates - 1; i++)
                 {
                     //Console.WriteLine(random.NextDouble()*100);
-                    int a = _random.Next(0, n - n / 3);
+                    int a = random.Next(0, n - n / 3);
                     Console.WriteLine((float)a / 10 + " " + i);
                     n -= a;
                     //statistics[i] = (float)a / 10;
-                    FinalResults.Add((float)a / 10);
+                    statistics1.Add((float)a / 10);
                 }
             else
             {
                 for (var i = 0; i < statistics.candidates - 1; i++)
                 {
                     //Console.WriteLine(random.NextDouble()*100);
-                    var a = _random.Next(0, n);
+                    var a = random.Next(0, n);
                     Console.WriteLine((float) a / 10 + " " + i);
                     n -= a;
                     //statistics[i] = (float)a / 10;
-                    FinalResults.Add((float) a / 10);
+                    statistics1.Add((float) a / 10);
                 }
             }
-
             Console.WriteLine((float)n / 10 + " " + (statistics.candidates - 1));
             //statistics[statistics.candidates -1] = (float)n / 10;
-            FinalResults.Add((float)n / 10);
-        }
-
-        public void Run()
-        {
-            GenerateResults();
-            float[] arr = FinalResults.ToArray();
-            for (int i = statistics.candidates -1; i>=0; i--)
+            statistics1.Add((float)n / 10);
+            float[] arr = statistics1.ToArray();
+            for (int i = statistics.candidates - 1; i >= 0; i--)
             {
                 Random r = new Random();
                 int a, b;
                 float c;
-                a = _random.Next(0, statistics.candidates);
+                a = random.Next(0, statistics.candidates);
                 b = r.Next(0, statistics.candidates);
                 c = arr[a];
                 arr[a] = arr[b];
                 arr[b] = c;
             }
+        }
 
-            FinalResults = arr.ToList<float>();
+        public void Run()
+        {
+            GenerateSeq();
 
-            double[] voices = new double[statistics.candidates];
-            arr = FinalResults.ToArray();
+            float[] arr = statistics1.ToArray();
             for(int i =0; i < statistics.candidates; i++)
             {
                 voices[i] = arr[i] * statistics.electorate / 100;
