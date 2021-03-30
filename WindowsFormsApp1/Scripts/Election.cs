@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         public readonly Statistics statistics;
         Random random = new Random();
         List<float> statistics1 = new List<float>();
+        double[] voices;
 
 
         public Election(int Candidates, int mistakeLevel, int Condition, int electorat)
@@ -23,6 +24,7 @@ namespace WindowsFormsApp1
             statistics = new Statistics(electorat, Candidates);
             this.MistakeLevel = mistakeLevel;
             this.Condition = Condition;
+            voices = new double[statistics.candidates];
         }
 
         //public double NextGaussian(Random r, double mean = 0, double stdDev = 1)
@@ -86,8 +88,7 @@ namespace WindowsFormsApp1
             GenerateSeq();
 
             float[] arr = statistics1.ToArray();
-            statistics1 = arr.ToList<float>();
-            double[] voices = new double[statistics.candidates];
+            statistics1 = arr.ToList<float>(); 
             arr = statistics1.ToArray();
             for(int i =0; i < statistics.candidates; i++)
             {
