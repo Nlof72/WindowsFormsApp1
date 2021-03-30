@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
     {
         Election election;
         ActivePeople activePeople;
+        double[] stats;
         int j = 0;
         public Form1()
         {
@@ -28,9 +29,16 @@ namespace WindowsFormsApp1
             activePeople.CalcActive();
             election = new Election((int)CandidatesInp.Value, (int)MistakeInp.Value, (int)ConditionsInp.Value, activePeople.GetActivePeople());
             timer1.Start();
+            if (chart1.Series.Count == 1) chart1.Series.RemoveAt(0);
+            for (int i = 0; i < (int)CandidatesInp.Value; i++)
+            {
+                chart1.Series.Add("Candidate "+ i);
+                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            }
             //chart1.Series.Add("llll");
             election.Run();
 
+            stats = election.voices;
         }
 
         private void CurrentLifeInp_ValueChanged(object sender, EventArgs e)
@@ -45,14 +53,19 @@ namespace WindowsFormsApp1
 
 
             int i;
-            if (j <= 23) { i = rand.Next(election.statistics.electorate)/5; }
-            else { i = election.statistics.electorate; timer1.Stop(); 
+
+            for (int ii = 0; ii < election.statistics.candidates; ii++)
+            {
+                if (j <= 23) { i = rand.Next((int)Math.Round(stats[ii])); }
+                else
+                {
+                    i = (int)Math.Round(stats[ii]); timer1.Stop();
+                }
+                chart1.Series[ii].Points.AddXY(j, i);
             }
-            chart1.Series[0].Points.AddXY(j,i);
-            RedOutput.Text = i + "";
-            election.statistics.electorate -= i;
+            //election.statistics.electorate -= i;
             j++;
-            PopulationInp.Value = election.statistics.electorate;
+            //PopulationInp.Value = election.statistics.electorate;
         }
     }
 }
