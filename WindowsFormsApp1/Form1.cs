@@ -45,14 +45,14 @@ namespace WindowsFormsApp1
 
 
             int i;
-            if (j <= 23) { i = rand.Next(election.electorat)/5; }
-            else { i = election.electorat; timer1.Stop(); 
+            if (j <= 23) { i = rand.Next(election.statistics.electorate)/5; }
+            else { i = election.statistics.electorate; timer1.Stop(); 
             }
             chart1.Series[0].Points.AddXY(j,i);
             RedOutput.Text = i + "";
-            election.electorat -= i;
+            election.statistics.electorate -= i;
             j++;
-            PopulationInp.Value = election.electorat;
+            PopulationInp.Value = election.statistics.electorate;
         }
     }
 }

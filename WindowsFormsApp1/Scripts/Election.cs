@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
         public readonly int MistakeLev;
         public readonly int Condition;
         public int electionDuration = 24;
-        private Statistics statistics;
+        public readonly Statistics statistics;
         Random random = new Random();
         List<float> statistics1 = new List<float>();
 
@@ -125,14 +125,16 @@ namespace WindowsFormsApp1
                 arr[b] = c;
             }
             statistics1 = arr.ToList<float>();
-            foreach (var a in statistics1)
-            {
-                Console.WriteLine(a);
-            }
+
             double[] voices = new double[statistics.candidates];
-            foreach(var a in voices)
+            arr = statistics1.ToArray();
+            for(int i =0; i < statistics.candidates; i++)
             {
-                Console.WriteLine();
+                voices[i] = arr[i] * statistics.electorate / 100;
+            }
+            foreach (var a in voices)
+            {
+                Console.WriteLine(Math.Round(a));
             }
 
         }
