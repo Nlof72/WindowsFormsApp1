@@ -83,19 +83,19 @@ namespace WindowsFormsApp1
         }
     }
 
-        public void Run()
+        void GenerateSeq()
         {
             int n = 1000;
-            if(statistics.candidates >=5)
-            for(int i = 0; i < statistics.candidates -1; i++)
-            {
-                //Console.WriteLine(random.NextDouble()*100);
-                int a = random.Next(0, n-n/3);
-                Console.WriteLine((float)a/10 + " "+i);
-                n -= a;
-                //statistics[i] = (float)a / 10;
-                statistics1.Add((float)a / 10);
-            }
+            if (statistics.candidates >= 5)
+                for (int i = 0; i < statistics.candidates - 1; i++)
+                {
+                    //Console.WriteLine(random.NextDouble()*100);
+                    int a = random.Next(0, n - n / 3);
+                    Console.WriteLine((float)a / 10 + " " + i);
+                    n -= a;
+                    //statistics[i] = (float)a / 10;
+                    statistics1.Add((float)a / 10);
+                }
             else
             {
                 for (int i = 0; i < statistics.candidates - 1; i++)
@@ -109,9 +109,14 @@ namespace WindowsFormsApp1
                 }
             }
 
-            Console.WriteLine((float)n / 10 + " "+ (statistics.candidates -1));
+            Console.WriteLine((float)n / 10 + " " + (statistics.candidates - 1));
             //statistics[statistics.candidates -1] = (float)n / 10;
             statistics1.Add((float)n / 10);
+        }
+
+        public void Run()
+        {
+            GenerateSeq();
             float[] arr = statistics1.ToArray();
             for (int i = statistics.candidates -1; i>=0; i--)
             {
@@ -132,11 +137,13 @@ namespace WindowsFormsApp1
             {
                 voices[i] = arr[i] * statistics.electorate / 100;
             }
+            int q = 0;
             foreach (var a in voices)
             {
+                q+= (int)Math.Round(a);
                 Console.WriteLine(Math.Round(a));
             }
-
+            Console.WriteLine(q + " " + statistics.electorate);
         }
 
 
