@@ -10,45 +10,44 @@ namespace WindowsFormsApp1.Scripts
     {
         public readonly int candidates;
         public int electorate;
-        public readonly ulong[] voices;
 
-        public Statistics(int electorate, int candidates)
+        public int[] FinalVoices;
+        private int ElectionDuration;
+        private int CurrentTime = 1;
+        int[] interimVoices;
+
+        public Statistics(int electorate, int candidates, int electionDuration)
         {
             this.electorate = electorate;
             this.candidates = candidates;
-            voices = new ulong[this.candidates];
+            interimVoices = new int[candidates];
+            ElectionDuration = electionDuration;
         }
 
-        private ulong CalculateVoicePerDay()
+        public int[] Step()
         {
-            ulong result = 0;
-            for (var i = 0; i < candidates; i++)
+            int voicesPerHour;
+            Random random = new Random();
+            if (CurrentTime == ElectionDuration)
             {
-                result += voices[i];
+                for (int i = 0; i < candidates; i++)
+                {
+                    interimVoices[i] += FinalVoices[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < candidates; i++)
+                {
+                    voicesPerHour = random.Next(0, FinalVoices[i] - (int)(FinalVoices[i] * 0.7));
+                    interimVoices[i] += voicesPerHour;
+                    FinalVoices[i] -= voicesPerHour;
+                }
             }
 
-            return result;
-        }
-
-        private float[] calculate_and_get_percents()
-        {
-            var totalVoices = CalculateVoicePerDay();
-            var percents = new float[candidates];
-            for (var i = 0; i < candidates; i++)
-            {
-                if (voices != null) percents[i] = voices[i] * totalVoices / 100;
-            }
-
-            return percents;
-        }
-
-        public void get_winner()
-        {
-            var percents = calculate_and_get_percents();
-            var winnerPercent = percents.Max();
-            var winner = Array.IndexOf(percents, winnerPercent);
-
-            Console.WriteLine("Winner-" + winnerPercent + " with " + winnerPercent + " %");
+            Console.WriteLine(CurrentTime + "DAY");
+            CurrentTime++;
+            return interimVoices;
         }
     }
 }
