@@ -64,17 +64,11 @@ namespace WindowsFormsApp1
                     statistics1.Add((float) a / 10);
                 }
             }
-
             Console.WriteLine((float)n / 10 + " " + (statistics.candidates - 1));
             //statistics[statistics.candidates -1] = (float)n / 10;
             statistics1.Add((float)n / 10);
-        }
-
-        public void Run()
-        {
-            GenerateSeq();
             float[] arr = statistics1.ToArray();
-            for (int i = statistics.candidates -1; i>=0; i--)
+            for (int i = statistics.candidates - 1; i >= 0; i--)
             {
                 Random r = new Random();
                 int a, b;
@@ -85,9 +79,14 @@ namespace WindowsFormsApp1
                 arr[a] = arr[b];
                 arr[b] = c;
             }
+        }
 
+        public void Run()
+        {
+            GenerateSeq();
+
+            float[] arr = statistics1.ToArray();
             statistics1 = arr.ToList<float>();
-
             double[] voices = new double[statistics.candidates];
             arr = statistics1.ToArray();
             for(int i =0; i < statistics.candidates; i++)
