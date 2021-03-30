@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Scripts;
 
 namespace WindowsFormsApp1
 {
     class Election
     {
-        public readonly int MistakeLev;
+        public readonly int MistakeLevel;
         public readonly int Condition;
-        public int electionDuration = 24;
+        public int ElectionDuration = 24;
         private Statistics statistics;
         Random random = new Random();
         List<float> statistics1 = new List<float>();
 
 
-        public Election(int Candidates, int MistakeLev, int Condition, int electorat)
+        public Election(int Candidates, int mistakeLevel, int Condition, int electorat)
         {
             statistics = new Statistics(electorat, Candidates);
-            this.MistakeLev = MistakeLev;
+            this.MistakeLevel = mistakeLevel;
             this.Condition = Condition;
         }
 
@@ -37,86 +38,41 @@ namespace WindowsFormsApp1
         //    return rand_normal;
         //}
 
-    public class Statistics
-    {
-        public readonly int candidates;
-        public int electorate;
-        public readonly ulong[] voices;
-
-        public Statistics(int electorate, int candidates)
-        {
-            this.electorate = electorate;
-            this.candidates = candidates;
-            voices = new ulong[this.candidates];
-        }
-
-        private ulong CalculateVoicePerDay()
-        {
-            ulong result = 0;
-            for (var i = 0; i < candidates; i++)
-            {
-                result += voices[i];
-            }
-
-            return result;
-        }
-
-        private float[] calculate_and_get_percents()
-        {
-            var totalVoices = CalculateVoicePerDay();
-            var percents = new float[candidates];
-            for (var i = 0; i < candidates; i++)
-            {
-                if (voices != null) percents[i] = voices[i] * totalVoices / 100;
-            }
-
-            return percents;
-        }
-
-        public void get_winner()
-        {
-            var percents = calculate_and_get_percents();
-            var winnerPercent = percents.Max();
-            var winner = Array.IndexOf(percents, winnerPercent);
-
-            Console.WriteLine("Winner-" + winnerPercent + " with " + winnerPercent + " %");
-        }
-    }
 
         public void Run()
         {
             int n = 1000;
-            if(statistics.candidates >=5)
-            for(int i = 0; i < statistics.candidates -1; i++)
-            {
-                //Console.WriteLine(random.NextDouble()*100);
-                int a = random.Next(0, n-n/3);
-                Console.WriteLine((float)a/10 + " "+i);
-                n -= a;
-                //statistics[i] = (float)a / 10;
-                statistics1.Add((float)a / 10);
-            }
-            else
-            {
+            if (statistics.candidates >= 5)
                 for (int i = 0; i < statistics.candidates - 1; i++)
                 {
                     //Console.WriteLine(random.NextDouble()*100);
-                    int a = random.Next(0, n);
-                    Console.WriteLine((float)a / 10 + " " + i);
+                    int a = random.Next(0, n - n / 3);
+                    Console.WriteLine((float) a / 10 + " " + i);
                     n -= a;
                     //statistics[i] = (float)a / 10;
-                    statistics1.Add((float)a / 10);
+                    statistics1.Add((float) a / 10);
+                }
+            else
+            {
+                for (var i = 0; i < statistics.candidates - 1; i++)
+                {
+                    //Console.WriteLine(random.NextDouble()*100);
+                    var a = random.Next(0, n);
+                    Console.WriteLine((float) a / 10 + " " + i);
+                    n -= a;
+                    //statistics[i] = (float)a / 10;
+                    statistics1.Add((float) a / 10);
                 }
             }
 
-            Console.WriteLine((float)n / 10 + " "+ (statistics.candidates -1));
+            Console.WriteLine((float) n / 10 + " " + (statistics.candidates - 1));
             //statistics[statistics.candidates -1] = (float)n / 10;
-            statistics1.Add((float)n / 10);
-            float[] arr = statistics1.ToArray();
-            for (int i = statistics.candidates -1; i>=0; i--)
+            statistics1.Add((float) n / 10);
+            var arr = statistics1.ToArray();
+            for (int i = statistics.candidates - 1; i >= 0; i--)
             {
                 Random r = new Random();
-                int a,b;
+                int a, b;
                 float c;
                 a = random.Next(0, statistics.candidates);
                 b = r.Next(0, statistics.candidates);
@@ -124,22 +80,19 @@ namespace WindowsFormsApp1
                 arr[a] = arr[b];
                 arr[b] = c;
             }
+
             statistics1 = arr.ToList<float>();
             foreach (var a in statistics1)
             {
                 Console.WriteLine(a);
             }
-            double[] voices = new double[statistics.candidates];
-            foreach(var a in voices)
+
+            var voices = new double[statistics.candidates];
+            foreach (var a in voices)
             {
                 Console.WriteLine();
             }
-
         }
-
-
-
-
     }
 
     //public class ZRandom
@@ -217,10 +170,7 @@ namespace WindowsFormsApp1
     //        Console.WriteLine(k.Max());
     //    }
     //}
-
 }
-
-
 
 
 /*class Statistic(object):
