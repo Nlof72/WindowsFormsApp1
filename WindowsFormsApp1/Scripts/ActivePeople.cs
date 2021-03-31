@@ -26,7 +26,8 @@ namespace WindowsFormsApp1
             difference = Math.Abs(lifelev - currentLife)/10;
             if(difference == 0) { difference = 0.5f; }
             CalcActivePeople();
-            //return difference; 
+            //return difference;
+            //Улучшить рандом
         }
         public int GetActivePeople()
         {

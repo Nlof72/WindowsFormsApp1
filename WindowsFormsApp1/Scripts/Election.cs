@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         Random random = new Random();
         List<float> statistics1 = new List<float>();
         public double[] voices;
-        private int duration;
+        private int duration = 24;
 
 
         public Election(int Candidates, int mistakeLevel, int Condition, int electorat)
@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
                 for (int i = 0; i < statistics.candidates - 1; i++)
                 {
                     //Console.WriteLine(random.NextDouble()*100);
-                    int a = random.Next(0, n - n / 3);
+                    int a = random.Next(n/100, n - n / 3);
                     Console.WriteLine((float)a / 10 + " " + i);
                     n -= a;
                     //statistics[i] = (float)a / 10;
@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
                 for (var i = 0; i < statistics.candidates - 1; i++)
                 {
                     //Console.WriteLine(random.NextDouble()*100);
-                    var a = random.Next(0, n);
+                    var a = random.Next(n/100, n);
                     Console.WriteLine((float) a / 10 + " " + i);
                     n -= a;
                     //statistics[i] = (float)a / 10;
@@ -92,6 +92,7 @@ namespace WindowsFormsApp1
             for(int i =0; i < statistics.candidates; i++)
             {
                 voices[i] = arr[i] * statistics.electorate / 100;
+                statistics.FinalVoices[i] = (int)Math.Round(arr[i] * statistics.electorate / 100f);
             }
             int q = 0;
             foreach (var a in voices)
@@ -100,6 +101,15 @@ namespace WindowsFormsApp1
                 Console.WriteLine(Math.Round(a));
             }
             Console.WriteLine(q + " " + statistics.electorate);
+
+            //for(int i = 0; i < 25; i++)
+            //{
+            //    int[] arr1 = statistics.Step();
+            //    for(int j = 0; j < arr1.Length; j++)
+            //    {
+            //        Console.WriteLine(" час" + i + " " + arr1[j]);
+            //    }
+            //}
         }
     }
 }

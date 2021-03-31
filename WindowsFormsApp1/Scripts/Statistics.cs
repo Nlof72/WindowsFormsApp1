@@ -13,7 +13,7 @@ namespace WindowsFormsApp1.Scripts
 
         public int[] FinalVoices;
         private int ElectionDuration;
-        private int CurrentTime = 1;
+        private int CurrentTime = 0;
         int[] interimVoices;
 
         public Statistics(int electorate, int candidates, int electionDuration)
@@ -22,7 +22,8 @@ namespace WindowsFormsApp1.Scripts
             this.candidates = candidates;
             interimVoices = new int[candidates];
             ElectionDuration = electionDuration;
-        }
+            FinalVoices = new int[candidates];
+    }
 
         public int[] Step()
         {
@@ -39,13 +40,13 @@ namespace WindowsFormsApp1.Scripts
             {
                 for (int i = 0; i < candidates; i++)
                 {
-                    voicesPerHour = random.Next(0, FinalVoices[i]-(int)(FinalVoices[i]*0.7));
+                    voicesPerHour = random.Next(0, FinalVoices[i]-(int)(FinalVoices[i]/1.2f));
                     interimVoices[i] += voicesPerHour;
                     FinalVoices[i] -= voicesPerHour;
                 }
             }
 
-            Console.WriteLine(CurrentTime + "DAY");
+            //Console.WriteLine(CurrentTime + "DAY");
             CurrentTime++;
             return interimVoices;
         }

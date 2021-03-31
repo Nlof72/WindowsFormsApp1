@@ -51,20 +51,27 @@ namespace WindowsFormsApp1
             Random rand = new Random();
 
 
-            int i;
+            //int i;
 
-            for (int ii = 0; ii < election.statistics.candidates; ii++)
-            {
-                if (j <= 23) { i = rand.Next((int)Math.Round(stats[ii])); }
-                else
-                {
-                    i = (int)Math.Round(stats[ii]); timer1.Stop();
-                }
-                chart1.Series[ii].Points.AddXY(j, i);
-            }
+            //for (int ii = 0; ii < election.statistics.candidates; ii++)
+            //{
+            //    if (j <= 23) { i = rand.Next((int)Math.Round(stats[ii])); }
+            //    else
+            //    {
+            //        i = (int)Math.Round(stats[ii]); timer1.Stop();
+            //    }
+            //    chart1.Series[ii].Points.AddXY(j, i);
+            //}
             //election.statistics.electorate -= i;
             j++;
             //PopulationInp.Value = election.statistics.electorate;
+            int[] arr1 = election.statistics.Step();
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                //Console.WriteLine(" час" + j + " " + arr1[i]);
+                chart1.Series[i].Points.AddXY(j, arr1[i]);
+            }
+            if (j == 24) timer1.Stop();
         }
     }
 }
