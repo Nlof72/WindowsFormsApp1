@@ -63,8 +63,8 @@ namespace WindowsFormsApp1
             //    chart1.Series[ii].Points.AddXY(j, i);
             //}
             //election.statistics.electorate -= i;
-            j++;
             //PopulationInp.Value = election.statistics.electorate;
+            j++;
             int[] arr1 = election.statistics.Step();
             for (int i = 0; i < arr1.Length; i++)
             {
