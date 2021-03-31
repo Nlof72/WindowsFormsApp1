@@ -8,28 +8,25 @@ namespace WindowsFormsApp1.Scripts
 {
    public class Statistics
     {
-        public readonly int candidates;
         public int electorate;
-
         public int[] FinalVoices;
         private int ElectionDuration;
-        private int CurrentTime = 0;
         int[] interimVoices;
 
         public Statistics(int electorate, int candidates, int electionDuration)
         {
             this.electorate = electorate;
-            this.candidates = candidates;
             interimVoices = new int[candidates];
             ElectionDuration = electionDuration;
-            FinalVoices = new int[candidates];
-    }
+            //FinalVoices = new int[candidates];
+        }
 
-        public int[] Step()
+        public int[] Step(int candidates)
         {
             int voicesPerHour;
             Random random = new Random();
-            if (CurrentTime == ElectionDuration)
+
+            if (ElectionDuration==0)
             {
                 for (int i = 0; i < candidates; i++)
                 {
@@ -40,14 +37,14 @@ namespace WindowsFormsApp1.Scripts
             {
                 for (int i = 0; i < candidates; i++)
                 {
-                    voicesPerHour = random.Next(0, FinalVoices[i]-(int)(FinalVoices[i]/1.2f));
+                    voicesPerHour = random.Next(0, FinalVoices[i] - (int)(FinalVoices[i] / 1.2f));
                     interimVoices[i] += voicesPerHour;
                     FinalVoices[i] -= voicesPerHour;
                 }
             }
 
             //Console.WriteLine(CurrentTime + "DAY");
-            CurrentTime++;
+            ElectionDuration--;
             return interimVoices;
         }
     }

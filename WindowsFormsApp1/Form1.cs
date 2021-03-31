@@ -26,7 +26,12 @@ namespace WindowsFormsApp1
             j = 0;
             activePeople = new ActivePeople((float)CurrentLifeInp.Value, (float)LifeLevInp.Value, (int)PopulationInp.Value);
             activePeople.CalcActive();
-            election = new Election((int)CandidatesInp.Value, (int)MistakeInp.Value, (int)ConditionsInp.Value, activePeople.GetActivePeople());
+            election = new Election(
+                (int)CandidatesInp.Value,
+                (int)MistakeInp.Value,
+                (int)ConditionsInp.Value,
+                activePeople.GetActivePeople()
+                );
             timer1.Start();
             chart1.Series.Clear();
             for (int i = 0; i < (int)CandidatesInp.Value; i++)
@@ -34,10 +39,10 @@ namespace WindowsFormsApp1
                 chart1.Series.Add("Candidate "+ i);
                 chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             }
-            //chart1.Series.Add("llll");
+
             election.Run();
 
-            stats = election.voices;
+            //stats = election.voices;
         }
 
         private void CurrentLifeInp_ValueChanged(object sender, EventArgs e)
@@ -47,10 +52,7 @@ namespace WindowsFormsApp1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
- 
             Random rand = new Random();
-
-
             //int i;
 
             //for (int ii = 0; ii < election.statistics.candidates; ii++)
@@ -64,8 +66,9 @@ namespace WindowsFormsApp1
             //}
             //election.statistics.electorate -= i;
             //PopulationInp.Value = election.statistics.electorate;
+
             j++;
-            int[] arr1 = election.statistics.Step();
+            int[] arr1 = election.statistics.Step(election.candidates);
             for (int i = 0; i < arr1.Length; i++)
             {
                 //Console.WriteLine(" час" + j + " " + arr1[i]);
