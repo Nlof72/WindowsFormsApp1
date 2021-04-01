@@ -10,7 +10,6 @@ namespace WindowsFormsApp1
 {
     class Election
     {
-        private readonly int thrownBilutes;
         private readonly int Condition;
         public readonly Statistics statistics;
         //public double[] voices;
@@ -19,11 +18,10 @@ namespace WindowsFormsApp1
         Random random = new Random();
         List<float> statistics1 = new List<float>();
 
-        public Election(int Candidates, int mistakeLevel, int Condition, int electorat)
+        public Election(int Candidates, int Condition, int electorat)
         {
             candidates = Candidates;
             statistics = new Statistics(electorat, candidates, duration);
-            thrownBilutes = mistakeLevel;
             this.Condition = Condition;
             //voices = new double[candidates];
         }

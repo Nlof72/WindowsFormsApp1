@@ -30,18 +30,16 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.LifeLevInp = new System.Windows.Forms.NumericUpDown();
             this.PopulationInp = new System.Windows.Forms.NumericUpDown();
             this.CandidatesInp = new System.Windows.Forms.NumericUpDown();
-            this.MistakeInp = new System.Windows.Forms.NumericUpDown();
             this.ConditionsInp = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,7 +51,6 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.LifeLevInp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopulationInp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CandidatesInp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MistakeInp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConditionsInp)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentLifeInp)).BeginInit();
@@ -117,16 +114,9 @@ namespace WindowsFormsApp1
             0,
             0});
             // 
-            // MistakeInp
-            // 
-            this.MistakeInp.Location = new System.Drawing.Point(524, 52);
-            this.MistakeInp.Name = "MistakeInp";
-            this.MistakeInp.Size = new System.Drawing.Size(120, 22);
-            this.MistakeInp.TabIndex = 3;
-            // 
             // ConditionsInp
             // 
-            this.ConditionsInp.Location = new System.Drawing.Point(667, 52);
+            this.ConditionsInp.Location = new System.Drawing.Point(509, 53);
             this.ConditionsInp.Name = "ConditionsInp";
             this.ConditionsInp.Size = new System.Drawing.Size(120, 22);
             this.ConditionsInp.TabIndex = 4;
@@ -163,19 +153,10 @@ namespace WindowsFormsApp1
             this.label3.TabIndex = 7;
             this.label3.Text = "Кандидаты";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(524, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Подкидыши";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(667, 21);
+            this.label5.Location = new System.Drawing.Point(509, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(115, 17);
             this.label5.TabIndex = 9;
@@ -188,12 +169,10 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.ConditionsInp);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.LifeLevInp);
-            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.PopulationInp);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.CandidatesInp);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.MistakeInp);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
@@ -203,7 +182,7 @@ namespace WindowsFormsApp1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(825, 22);
+            this.label6.Location = new System.Drawing.Point(667, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(167, 17);
             this.label6.TabIndex = 11;
@@ -211,7 +190,7 @@ namespace WindowsFormsApp1
             // 
             // CurrentLifeInp
             // 
-            this.CurrentLifeInp.Location = new System.Drawing.Point(828, 51);
+            this.CurrentLifeInp.Location = new System.Drawing.Point(670, 52);
             this.CurrentLifeInp.Name = "CurrentLifeInp";
             this.CurrentLifeInp.Size = new System.Drawing.Size(120, 22);
             this.CurrentLifeInp.TabIndex = 10;
@@ -220,21 +199,20 @@ namespace WindowsFormsApp1
             0,
             0,
             0});
-            this.CurrentLifeInp.ValueChanged += new System.EventHandler(this.CurrentLifeInp_ValueChanged);
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(1, 107);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(800, 291);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -265,7 +243,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 450);
+            this.ClientSize = new System.Drawing.Size(865, 452);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.RedOutput);
             this.Controls.Add(this.chart1);
@@ -275,7 +253,6 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.LifeLevInp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopulationInp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CandidatesInp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MistakeInp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConditionsInp)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -291,12 +268,10 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.NumericUpDown LifeLevInp;
         private System.Windows.Forms.NumericUpDown PopulationInp;
         private System.Windows.Forms.NumericUpDown CandidatesInp;
-        private System.Windows.Forms.NumericUpDown MistakeInp;
         private System.Windows.Forms.NumericUpDown ConditionsInp;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
