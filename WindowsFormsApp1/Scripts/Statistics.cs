@@ -39,7 +39,7 @@ namespace WindowsFormsApp1.Scripts
                     VoicesPerHour[i] += voices;
                     FinalVoices[i] -= voices;
                 }
-                FakeVoices = random.Next(0, 1);
+                FakeVoices = random.Next(0, 2);
             }
             Duration--;
             return VoicesPerHour;
@@ -58,7 +58,11 @@ namespace WindowsFormsApp1.Scripts
             }
             // the distribution of the last candidate is calculated separately
             FinalVoices[Candidates-1] = (decimal)percents / 10;
-
+            for (int i = 0; i < Candidates; i++)
+            {
+                //voices[i] = arr[i] * statistics.electorate / 100;
+                FinalVoices[i] = (int)Math.Round(FinalVoices[i] * Electorate / 100);
+            }
         }
         public void GenerateSeq()
         {

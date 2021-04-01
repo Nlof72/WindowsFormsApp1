@@ -42,36 +42,15 @@ namespace WindowsFormsApp1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //int i;
-
-            //for (int ii = 0; ii < election.statistics.candidates; ii++)
-            //{
-            //    if (j <= 23) { i = rand.Next((int)Math.Round(stats[ii])); }
-            //    else
-            //    {
-            //        i = (int)Math.Round(stats[ii]); timer1.Stop();
-            //    }
-            //    chart1.Series[ii].Points.AddXY(j, i);
-            //}
-            //election.statistics.electorate -= i;
-            //PopulationInp.Value = election.statistics.electorate;
-
             j++;
             decimal[] totalPerHour = election.statistics.Step();
             for (int i = 0; i < totalPerHour.Length; i++)
             {
-                //Console.WriteLine(" час" + j + " " + arr1[i]);
-
                 chart1.Series[i].Points.Clear();
-                //Console.WriteLine(chart1.Series[i].Points[0].YValues);
-                //chart1.Series[i].Points[0].YValues[0] = (double)totalPerHour[i];
-                chart1.Series[i].Points.AddXY(i, totalPerHour[i]);
-                Console.WriteLine(totalPerHour[i]);
-
+                chart1.Series[i].Points.AddXY(i, totalPerHour[i]/activePeople.GetActivePeople()*100);
             }
             if (j == 24) { 
                 timer1.Stop();
-                //Console.WriteLine(activePeople.ChangePopulation(PopulationInp.Value));
                 PopulationInp.Value = activePeople.ChangePopulation(PopulationInp.Value);
 
             }

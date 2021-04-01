@@ -202,6 +202,7 @@ namespace WindowsFormsApp1
             // 
             // chart1
             // 
+            chartArea1.AxisX.LabelStyle.Enabled = false;
             chartArea1.AxisY.Maximum = 100D;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
