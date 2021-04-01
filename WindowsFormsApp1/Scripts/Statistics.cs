@@ -8,12 +8,12 @@ namespace WindowsFormsApp1.Scripts
 {
    public class Statistics
     {
-        public int electorate;
+        public decimal electorate;
         public int[] FinalVoices;
         private int ElectionDuration;
         int[] interimVoices;
 
-        public Statistics(int electorate, int candidates, int electionDuration)
+        public Statistics(decimal electorate, int candidates, int electionDuration)
         {
             this.electorate = electorate;
             interimVoices = new int[candidates];

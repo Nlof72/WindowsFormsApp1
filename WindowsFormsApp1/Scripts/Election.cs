@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         Random random = new Random();
         List<float> statistics1 = new List<float>();
 
-        public Election(int Candidates, int Condition, int electorat)
+        public Election(int Candidates, int Condition, decimal electorat)
         {
             candidates = Candidates;
             statistics = new Statistics(electorat, candidates, duration);
@@ -65,7 +65,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < candidates; i++)
             {
                 //voices[i] = arr[i] * statistics.electorate / 100;
-                statistics.FinalVoices[i] = (int)Math.Round(arr[i] * statistics.electorate / 100f);
+                statistics.FinalVoices[i] = (int)Math.Round(arr[i] * (double)statistics.electorate / 100);
             }
             return arr;
         }

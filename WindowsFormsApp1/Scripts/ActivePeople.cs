@@ -8,28 +8,47 @@ namespace WindowsFormsApp1
 {
     class ActivePeople
     {
-        float currentLife;
-        float lifelev;
-        int activePopulation;
+        int currentLife;
+        int lifelev;
+        decimal activePopulation;
         public float difference;
-        public ActivePeople(float CurrentLife, float Lifelev , int activePopulation) {
+        public float turnout;
+        public ActivePeople(int CurrentLife, int Lifelev , decimal activePopulation) {
             this.currentLife = CurrentLife;
             this.lifelev = Lifelev;
             this.activePopulation = activePopulation;
         }
         void CalcActivePeople()
         {
-            activePopulation = (int)Math.Round(activePopulation * difference);
+
+            activePopulation = Math.Round(activePopulation * (decimal)difference);
+            Console.WriteLine(activePopulation);
         }
 
         public void CalcActive() {
-            difference = Math.Abs(lifelev - currentLife)/10;
-            if(difference == 0) { difference = 0.5f; }
+            Console.WriteLine(GetProcent(lifelev*100,Math.Abs(currentLife-10)*100,1000)+" --------------");
+            turnout = GetProcent(lifelev * 100, Math.Abs(currentLife - 10) * 100, 1000);
+            difference = turnout;
+            //if (difference == 0) { difference = 0.5f; }
             CalcActivePeople();
             //return difference;
             //Улучшить рандом
         }
-        public int GetActivePeople()
+
+        float GetProcent(int rigt, int left = 0, float n = 10)
+        {
+            Random r = new Random();
+            //Console.WriteLine(r.Next(left, rigt) / n);
+            return r.Next(left, rigt) / n;
+        }
+        public decimal ChangePopulation( decimal Population)
+        {
+            //int n = 100;
+            decimal d = Math.Round(Population + (decimal)(GetProcent(100) -5)* Population / 100);
+            //Console.WriteLine("Was :"+Population+" Become :" + d);
+            return d;
+        }
+        public decimal GetActivePeople()
         {
             return activePopulation;
         }

@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         private void Start_Click(object sender, EventArgs e)
         {
             j = 0;
-            activePeople = new ActivePeople((float)CurrentLifeInp.Value, (float)LifeLevInp.Value, (int)PopulationInp.Value);
+            activePeople = new ActivePeople((int)CurrentLifeInp.Value, (int)LifeLevInp.Value, (int)PopulationInp.Value);
             activePeople.CalcActive();
             election = new Election(
                 (int)CandidatesInp.Value,
@@ -68,7 +68,11 @@ namespace WindowsFormsApp1
                 //Console.WriteLine(" час" + j + " " + arr1[i]);
                 chart1.Series[i].Points.AddXY(j, arr1[i]);
             }
-            if (j == 24) timer1.Stop();
+            if (j == 24) { 
+                timer1.Stop();
+                //Console.WriteLine(activePeople.ChangePopulation(PopulationInp.Value));
+                PopulationInp.Value = activePeople.ChangePopulation(PopulationInp.Value);
+            }
         }
     }
 }
