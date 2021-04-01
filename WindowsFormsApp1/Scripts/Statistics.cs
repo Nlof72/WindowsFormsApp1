@@ -8,44 +8,73 @@ namespace WindowsFormsApp1.Scripts
 {
     public class Statistics
     {
-        public int electorate;
-        public int[] FinalVoices;
-        private int ElectionDuration;
-        int[] interimVoices;
+        private int Duration;
+        private int Candidates;
+        public int FakeVoices;
+        public decimal Electorate;
+        public decimal[] VoicesPerHour;
+        public decimal[] FinalVoices;
 
-        public Statistics(int electorate, int candidates, int electionDuration)
+        public Statistics(decimal electorate, int candidates, int duration = 24)
         {
-            this.electorate = electorate;
-            interimVoices = new int[candidates];
-            ElectionDuration = electionDuration;
-            FinalVoices = new int[candidates];
+            Candidates = candidates;
+            VoicesPerHour = new decimal[candidates];
+            FinalVoices = new decimal[candidates];
+            Duration = duration;
+            Electorate = electorate;
         }
-
-        public int[] Step(int candidates)
+        public decimal[] Step()
         {
-            int voicesPerHour;
+            decimal voices;
             Random random = new Random();
-
-            if (ElectionDuration == 0)
+            if (Duration == 0)
             {
-                for (int i = 0; i < candidates; i++)
-                {
-                    interimVoices[i] += FinalVoices[i];
-                }
+                for (int i = 0; i < Candidates; i++) { VoicesPerHour[i] += FinalVoices[i]; }
             }
             else
             {
-                for (int i = 0; i < candidates; i++)
+                for (int i = 0; i < Candidates; i++)
                 {
-                    voicesPerHour = random.Next(0, FinalVoices[i] - (int)(FinalVoices[i] / 1.2f));
-                    interimVoices[i] += voicesPerHour;
-                    FinalVoices[i] -= voicesPerHour;
+                    voices = random.Next(0, (int)(FinalVoices[i] - FinalVoices[i] / 1.2m));
+                    VoicesPerHour[i] += voices;
+                    FinalVoices[i] -= voices;
                 }
+                FakeVoices = random.Next(0, 1);
             }
+            Duration--;
+            return VoicesPerHour;
+        }
 
-            //Console.WriteLine(CurrentTime + "DAY");
-            ElectionDuration--;
-            return interimVoices;
+        void VotesDistribution(bool lessThanFive, int percents)
+        {
+            Random random = new Random();
+            // distribution of votes to n candidates 
+            for (int i = 0; i < Candidates - 1; i++)
+            {
+                int a;
+                a = lessThanFive ? random.Next(percents / 100, percents) : random.Next(percents / 100, percents - percents / 3);
+                percents -= a;
+                FinalVoices[i] = (decimal)a / 10;
+            }
+            // the distribution of the last candidate is calculated separately
+            FinalVoices[Candidates] = (decimal)percents / 10;
+
+        }
+        public void GenerateSeq()
+        {
+
+            VotesDistribution(Candidates < 5, 1000);
+
+            for (int i = Candidates - 1; i >= 0; i--)
+            {
+                Random r = new Random();
+                Random random = new Random();
+                int a = random.Next(0, Candidates);
+                int b = r.Next(0, Candidates);
+                decimal c = FinalVoices[a];
+                FinalVoices[a] = FinalVoices[b];
+                FinalVoices[b] = c;
+            }
         }
     }
 }
