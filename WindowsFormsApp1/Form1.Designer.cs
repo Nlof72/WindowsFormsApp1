@@ -220,7 +220,6 @@ namespace WindowsFormsApp1
             0,
             0,
             0});
-            this.CurrentLifeInp.ValueChanged += new System.EventHandler(this.CurrentLifeInp_ValueChanged);
             // 
             // chart1
             // 

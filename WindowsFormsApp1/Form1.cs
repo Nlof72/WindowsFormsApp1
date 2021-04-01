@@ -14,7 +14,6 @@ namespace WindowsFormsApp1
     {
         Election election;
         ActivePeople activePeople;
-        double[] stats;
         int j = 0;
         public Form1()
         {
@@ -42,11 +41,6 @@ namespace WindowsFormsApp1
             election.Run();
 
             //stats = election.voices;
-        }
-
-        private void CurrentLifeInp_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
