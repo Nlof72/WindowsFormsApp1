@@ -18,7 +18,7 @@ namespace WindowsFormsApp1.Scripts
             this.electorate = electorate;
             interimVoices = new int[candidates];
             ElectionDuration = electionDuration;
-            //FinalVoices = new int[candidates];
+            FinalVoices = new int[candidates];
         }
 
         public int[] Step(int candidates)
