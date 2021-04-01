@@ -31,10 +31,12 @@ namespace WindowsFormsApp1
             for (int i = 0; i < (int)CandidatesInp.Value; i++)
             {
                 chart1.Series.Add("Candidate "+ i);
-                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             }
 
             election.Run();
+            for(int i = 0; i< (int)CandidatesInp.Value;i++)
+                Console.WriteLine(election.statistics.FinalVoices[i]);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace WindowsFormsApp1
             //PopulationInp.Value = election.statistics.electorate;
 
             j++;
-            int[] totalPerHour = election.statistics.Step();
+            decimal[] totalPerHour = election.statistics.Step();
             for (int i = 0; i < totalPerHour.Length; i++)
             {
                 //Console.WriteLine(" час" + j + " " + arr1[i]);
@@ -64,6 +66,7 @@ namespace WindowsFormsApp1
                 timer1.Stop();
                 //Console.WriteLine(activePeople.ChangePopulation(PopulationInp.Value));
                 PopulationInp.Value = activePeople.ChangePopulation(PopulationInp.Value);
+
             }
         }
     }

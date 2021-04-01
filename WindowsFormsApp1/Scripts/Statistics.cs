@@ -57,7 +57,7 @@ namespace WindowsFormsApp1.Scripts
                 FinalVoices[i] = (decimal)a / 10;
             }
             // the distribution of the last candidate is calculated separately
-            FinalVoices[Candidates] = (decimal)percents / 10;
+            FinalVoices[Candidates-1] = (decimal)percents / 10;
 
         }
         public void GenerateSeq()

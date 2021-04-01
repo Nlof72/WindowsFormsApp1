@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
 
         public Election(int Candidates, int Condition, decimal electorat)
         {
-            statistics = new Statistics(electorat, candidates, duration);
+            statistics = new Statistics(electorat, Candidates);
         }
 
         public void Run()
