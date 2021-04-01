@@ -28,7 +28,6 @@ namespace WindowsFormsApp1
             activePeople.CalcActive();
             election = new Election(
                 (int)CandidatesInp.Value,
-                (int)MistakeInp.Value,
                 (int)ConditionsInp.Value,
                 activePeople.GetActivePeople()
                 );

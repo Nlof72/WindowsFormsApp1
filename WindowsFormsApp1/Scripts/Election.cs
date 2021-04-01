@@ -23,7 +23,6 @@ namespace WindowsFormsApp1
         {
             candidates = Candidates;
             statistics = new Statistics(electorat, candidates, duration);
-            thrownBilutes = mistakeLevel;
             this.Condition = Condition;
             //voices = new double[candidates];
         }
