@@ -31,7 +31,8 @@ namespace WindowsFormsApp1
             for (int i = 0; i < (int)CandidatesInp.Value; i++)
             {
                 chart1.Series.Add("Candidate "+ i);
-                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
+                chart1.Series[i].Points.AddXY(i, 0);
             }
 
             election.Run();
@@ -60,7 +61,13 @@ namespace WindowsFormsApp1
             for (int i = 0; i < totalPerHour.Length; i++)
             {
                 //Console.WriteLine(" час" + j + " " + arr1[i]);
-                chart1.Series[i].Points.AddXY(j, totalPerHour[i]);
+
+                chart1.Series[i].Points.Clear();
+                //Console.WriteLine(chart1.Series[i].Points[0].YValues);
+                //chart1.Series[i].Points[0].YValues[0] = (double)totalPerHour[i];
+                chart1.Series[i].Points.AddXY(i, totalPerHour[i]);
+                Console.WriteLine(totalPerHour[i]);
+
             }
             if (j == 24) { 
                 timer1.Stop();

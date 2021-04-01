@@ -202,6 +202,7 @@ namespace WindowsFormsApp1
             // 
             // chart1
             // 
+            chartArea1.AxisY.Maximum = 100D;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -236,7 +237,6 @@ namespace WindowsFormsApp1
             // 
             // timer1
             // 
-            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
