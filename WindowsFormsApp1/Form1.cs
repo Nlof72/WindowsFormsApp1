@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
     {
         Election election;
         ActivePeople activePeople;
+        double[] stats;
         int j = 0;
         public Form1()
         {
@@ -27,6 +28,7 @@ namespace WindowsFormsApp1
             activePeople.CalcActive();
             election = new Election(
                 (int)CandidatesInp.Value,
+                (int)MistakeInp.Value,
                 (int)ConditionsInp.Value,
                 activePeople.GetActivePeople()
                 );
@@ -43,6 +45,10 @@ namespace WindowsFormsApp1
             //stats = election.voices;
         }
 
+        private void CurrentLifeInp_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
