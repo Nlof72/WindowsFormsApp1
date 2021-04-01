@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1.Scripts
 {
-   public class Statistics
+    public class Statistics
     {
-        public decimal electorate;
+        public int electorate;
         public int[] FinalVoices;
         private int ElectionDuration;
         int[] interimVoices;
 
-        public Statistics(decimal electorate, int candidates, int electionDuration)
+        public Statistics(int electorate, int candidates, int electionDuration)
         {
             this.electorate = electorate;
             interimVoices = new int[candidates];
@@ -26,7 +26,7 @@ namespace WindowsFormsApp1.Scripts
             int voicesPerHour;
             Random random = new Random();
 
-            if (ElectionDuration==0)
+            if (ElectionDuration == 0)
             {
                 for (int i = 0; i < candidates; i++)
                 {
