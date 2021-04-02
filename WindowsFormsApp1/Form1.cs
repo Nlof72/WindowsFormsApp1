@@ -31,8 +31,10 @@ namespace WindowsFormsApp1
             for (int i = 0; i < (int)CandidatesInp.Value; i++)
             {
                 chart1.Series.Add("Candidate "+ i);
-                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
+                chart1.Series[i].BorderWidth = 4;
+                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
                 chart1.Series[i].Points.AddXY(i, 0);
+
             }
 
             election.Run();

@@ -202,6 +202,8 @@ namespace WindowsFormsApp1
             // 
             // chart1
             // 
+            chartArea1.Area3DStyle.Inclination = 60;
+            chartArea1.Area3DStyle.Rotation = 60;
             chartArea1.AxisX.LabelStyle.Enabled = false;
             chartArea1.AxisY.Maximum = 100D;
             chartArea1.Name = "ChartArea1";
@@ -210,6 +212,7 @@ namespace WindowsFormsApp1
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(1, 107);
             this.chart1.Name = "chart1";
+            series1.BorderWidth = 5;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
