@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
 
         public void CalcActive() {
             //Console.WriteLine(GetProcent(lifelev*100,Math.Abs(currentLife-10)*100,1000)+" --------------");
-            turnout = GetProcent(lifelev * 100, (Math.Abs(currentLife - lifelev)<5?5:Math.Abs(currentLife - lifelev)) * 100, 1000);
+            turnout = GetProcent(lifelev * 100, (Math.Abs(currentLife - lifelev) * 100, 1000);
             difference = turnout;
             //if (difference == 0) { difference = 0.5f; }
             CalcActivePeople();
