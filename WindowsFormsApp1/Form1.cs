@@ -85,6 +85,12 @@ namespace WindowsFormsApp1
                         "Need RE-Election!!!!!";
 
                 }
+                else if(t==-1)
+                {
+                    CandidatesInp.Value = election.ReElection();
+                    str += $"Winner did not collect the required amount\n of percents to win (at least 50%)\n"
+                        + "Need RE-Election!!!!!";
+                }
                 else {
                     str += $"Candidate {t}  is winner!!!!";
                     CandidatesInp.Enabled = true;

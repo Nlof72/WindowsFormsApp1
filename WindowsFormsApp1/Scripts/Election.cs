@@ -44,9 +44,9 @@ namespace WindowsFormsApp1
             if (turnout * 100 < (float)condition || statistics.FakeVoices >= 10) return 0;
             for (int i = 0; i< voice.Length; i++)
             {
-                if (voice[i] > 50) { return i + 1; }
+                if (voice[i] >= 50) { return i + 1; }
             }
-            return 0;
+            return -1;
         }
     }
 }
