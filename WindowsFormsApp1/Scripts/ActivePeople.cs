@@ -35,11 +35,11 @@ namespace WindowsFormsApp1
             //Улучшить рандом
         }
 
-        float GetProcent(int rigt, int left = 0, float n = 10)
+        float GetProcent(int right, int left = 0, float n = 10)
         {
             Random r = new Random();
             //Console.WriteLine(r.Next(left, rigt) / n);
-            return r.Next(left, rigt) / n;
+            return r.Next(left, right) / n;
         }
         public decimal ChangePopulation( decimal Population)
         {
@@ -53,6 +53,7 @@ namespace WindowsFormsApp1
         {
             decimal d =  (decimal)(GetProcent(3,0,1) -1);
             Console.WriteLine(" Become :" + d);
+            if((currentLife+d> lifelev) || (currentLife+d <0)) return 0;
             if ((currentLife+d <= lifelev)||(currentLife + d>0)) return d;
             return 0;
         }

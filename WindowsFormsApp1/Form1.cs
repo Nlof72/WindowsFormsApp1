@@ -62,6 +62,7 @@ namespace WindowsFormsApp1
             //decimal[] totalPerHour = 
             stata[0] += j + " hour \n" ;
             float[] persentPerHour = election.statistics.ConvertToPercent();
+            string str = "";
             //OutPutBox.Text += stata[0];
 
             for (int i = 0; i < persentPerHour.Length; i++)
@@ -75,10 +76,10 @@ namespace WindowsFormsApp1
                 PopulationInp.Value = activePeople.ChangePopulation(PopulationInp.Value);
                 CurrentLifeInp.Value +=  activePeople.ChangeLifeLevel();
                 Start.Enabled = true;
-                stata[0] += "\n";
-                OutPutBox.Text += stata[0];
+
                 int t = election.ChoseWinner(activePeople.difference);
-                OutPutBox.Text += "\n\n----Summary----\n\n";
+                str += "\n\n----Summary----\n\n";
+                str += "\nTurnout is " + activePeople.turnout * 100 + "%\n";
                 if (t == 0) {
                     CandidatesInp.Value = election.ReElection();
                     OutPutBox.Text += $"Insufficient voter turnout: {Math.Round(activePeople.difference,2)*100}%\n" +
@@ -92,7 +93,9 @@ namespace WindowsFormsApp1
                 }
                 
             }
-  
+            OutPutBox.Text += stata[0];
+            OutPutBox.Text +=str;
+
         }
 
         private void Reset_Click(object sender, EventArgs e)
