@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         {
 
             activePopulation = Math.Round(activePopulation * (decimal)difference);
-            Console.WriteLine(activePopulation+" Active Population");
+            Console.WriteLine(activePopulation + " Active Population");
         }
 
         public void CalcActive() {

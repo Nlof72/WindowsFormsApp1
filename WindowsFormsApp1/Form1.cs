@@ -67,9 +67,8 @@ namespace WindowsFormsApp1
             for (int i = 0; i < persentPerHour.Length; i++)
             {
                 chart1.Series[i].Points.Clear();
-                chart1.Series[i].Points.AddXY(i, persentPerHour[i]);
-                //Console.WriteLine(Math.Round(totalPerHour[i] /activePeople.GetActivePeople() *100,2));              
-                stata[0] += "Condidate number - "+(i+1) + "\nVoice percent: "+ Math.Round(persentPerHour[i],2)+"% \n";
+                chart1.Series[i].Points.AddXY(i, persentPerHour[i]);           
+                stata[0] += $"Condidate number - {(i + 1)}\nVoice percent: {Math.Round(persentPerHour[i], 2)}% \n";
             }
             if (j == 24) { 
                 timer1.Stop();
@@ -82,13 +81,13 @@ namespace WindowsFormsApp1
                 OutPutBox.Text += "\n\n----Summary----\n\n";
                 if (t == 0) {
                     CandidatesInp.Value = election.ReElection();
-                    OutPutBox.Text += "Need RE-Election!!!!!";
-                    //Console.WriteLine("RE-Election!!!!!");
+                    OutPutBox.Text += $"Insufficient voter turnout: {Math.Round(activePeople.difference,2)*100}%\n" +
+                        $"Percentage  of illegally thrown ballots:{election.statistics.FakeVoices}%\n" +
+                        $"Need RE-Election!!!!!";
 
                 }
                 else {
-                    OutPutBox.Text += "Candidate " + t + " is winner!!!!";
-                    //Console.WriteLine("Candidate " + t + " is winner!!!!");
+                    OutPutBox.Text += $"Candidate {t}  is winner!!!!";
                     CandidatesInp.Enabled = true;
                 }
                 

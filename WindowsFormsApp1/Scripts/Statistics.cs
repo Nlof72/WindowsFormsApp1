@@ -10,7 +10,7 @@ namespace WindowsFormsApp1.Scripts
     {
         private int Duration;
         private int Candidates;
-        public int FakeVoices;
+        public double FakeVoices;
         public decimal Electorate;
         public decimal[] VoicesPerHour;
         public decimal[] FinalVoices;
@@ -20,6 +20,7 @@ namespace WindowsFormsApp1.Scripts
             Candidates = candidates;
             VoicesPerHour = new decimal[candidates];
             FinalVoices = new decimal[candidates];
+            FakeVoices = 0;
             Duration = duration;
             Electorate = electorate;
         }
@@ -29,10 +30,16 @@ namespace WindowsFormsApp1.Scripts
             Random random = new Random();
             if (Duration == 1)
             {
+                decimal total_people = 0;
                 for (int i = 0; i < Candidates; i++) { 
                     VoicesPerHour[i] += FinalVoices[i];
-                    //Console.WriteLine(FinalVoices[i]+"yyyyyyyy");
                 }
+                for (int i = 0; i < Candidates; i++)
+                {
+                    total_people += VoicesPerHour[i];
+                }
+
+                FakeVoices = random.Next(0, 15);
             }
             else
             {
@@ -42,7 +49,6 @@ namespace WindowsFormsApp1.Scripts
                     VoicesPerHour[i] += voices;
                     FinalVoices[i] -= voices;
                 }
-                FakeVoices = random.Next(0, 2);
             }
             Duration--;
             return VoicesPerHour;
@@ -80,7 +86,6 @@ namespace WindowsFormsApp1.Scripts
 
         public void GenerateSeq()
         {
-            //Console.WriteLine(Candidates);
             VotesDistribution(Candidates < 5, 1000);
 
             for (int i = Candidates - 1; i >= 0; i--)

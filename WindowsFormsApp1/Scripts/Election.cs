@@ -37,12 +37,11 @@ namespace WindowsFormsApp1
             return y;
         }
 
-        public int ChoseWinner(float turnout )
+        public int ChoseWinner(float turnout)
         {
             float[] voice = statistics.ConvertToPercent();
-            //Console.WriteLine(turnout + "asdasdasdas");
-            if (turnout*100 < (float)condition) return 0;
-            for(int i=0; i< voice.Length; i++)
+            if (turnout * 100 < (float)condition || statistics.FakeVoices >= 10) return 0;
+            for (int i = 0; i< voice.Length; i++)
             {
                 if (voice[i] > 50) { return i + 1; }
             }
