@@ -27,9 +27,12 @@ namespace WindowsFormsApp1.Scripts
         {
             decimal voices;
             Random random = new Random();
-            if (Duration == 0)
+            if (Duration == 1)
             {
-                for (int i = 0; i < Candidates; i++) { VoicesPerHour[i] += FinalVoices[i]; }
+                for (int i = 0; i < Candidates; i++) { 
+                    VoicesPerHour[i] += FinalVoices[i];
+                    //Console.WriteLine(FinalVoices[i]+"yyyyyyyy");
+                }
             }
             else
             {
@@ -64,9 +67,20 @@ namespace WindowsFormsApp1.Scripts
                 FinalVoices[i] = (int)Math.Round(FinalVoices[i] * Electorate / 100);
             }
         }
+
+        public float[] ConvertToPercent()
+        {
+            float[] persents = new float[Candidates];
+            for (int i = 0; i < Candidates; i++)
+            {
+                persents[i] =  (float)(VoicesPerHour[i] / Electorate * 100);
+            }
+            return persents;
+        }
+
         public void GenerateSeq()
         {
-
+            //Console.WriteLine(Candidates);
             VotesDistribution(Candidates < 5, 1000);
 
             for (int i = Candidates - 1; i >= 0; i--)
@@ -79,6 +93,7 @@ namespace WindowsFormsApp1.Scripts
                 FinalVoices[a] = FinalVoices[b];
                 FinalVoices[b] = c;
             }
+
         }
     }
 }

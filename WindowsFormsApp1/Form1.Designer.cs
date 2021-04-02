@@ -32,7 +32,6 @@ namespace WindowsFormsApp1
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.LifeLevInp = new System.Windows.Forms.NumericUpDown();
             this.PopulationInp = new System.Windows.Forms.NumericUpDown();
             this.CandidatesInp = new System.Windows.Forms.NumericUpDown();
@@ -45,9 +44,10 @@ namespace WindowsFormsApp1
             this.label6 = new System.Windows.Forms.Label();
             this.CurrentLifeInp = new System.Windows.Forms.NumericUpDown();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.RedOutput = new System.Windows.Forms.TextBox();
             this.Start = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.OutPutBox = new System.Windows.Forms.RichTextBox();
+            this.Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LifeLevInp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopulationInp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CandidatesInp)).BeginInit();
@@ -176,7 +176,7 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1050, 100);
+            this.panel1.Size = new System.Drawing.Size(849, 100);
             this.panel1.TabIndex = 10;
             // 
             // label6
@@ -212,28 +212,15 @@ namespace WindowsFormsApp1
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(1, 107);
             this.chart1.Name = "chart1";
-            series1.BorderWidth = 5;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(800, 291);
+            this.chart1.Size = new System.Drawing.Size(849, 291);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
             // 
-            // RedOutput
-            // 
-            this.RedOutput.Location = new System.Drawing.Point(162, 416);
-            this.RedOutput.Name = "RedOutput";
-            this.RedOutput.Size = new System.Drawing.Size(216, 22);
-            this.RedOutput.TabIndex = 12;
-            // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(499, 415);
+            this.Start.Location = new System.Drawing.Point(869, 12);
             this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(75, 23);
+            this.Start.Size = new System.Drawing.Size(94, 42);
             this.Start.TabIndex = 13;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = true;
@@ -243,13 +230,34 @@ namespace WindowsFormsApp1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // OutPutBox
+            // 
+            this.OutPutBox.BackColor = System.Drawing.Color.White;
+            this.OutPutBox.Location = new System.Drawing.Point(869, 107);
+            this.OutPutBox.Name = "OutPutBox";
+            this.OutPutBox.ReadOnly = true;
+            this.OutPutBox.Size = new System.Drawing.Size(327, 291);
+            this.OutPutBox.TabIndex = 14;
+            this.OutPutBox.Text = "";
+            // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(997, 12);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(101, 42);
+            this.Reset.TabIndex = 15;
+            this.Reset.Text = "Reset";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(888, 455);
+            this.ClientSize = new System.Drawing.Size(1216, 455);
+            this.Controls.Add(this.Reset);
+            this.Controls.Add(this.OutPutBox);
             this.Controls.Add(this.Start);
-            this.Controls.Add(this.RedOutput);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -263,7 +271,6 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.CurrentLifeInp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -279,11 +286,12 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.TextBox RedOutput;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown CurrentLifeInp;
+        private System.Windows.Forms.RichTextBox OutPutBox;
+        private System.Windows.Forms.Button Reset;
     }
 }
 
