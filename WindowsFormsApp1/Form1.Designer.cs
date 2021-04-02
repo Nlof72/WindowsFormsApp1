@@ -30,8 +30,8 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.LifeLevInp = new System.Windows.Forms.NumericUpDown();
             this.PopulationInp = new System.Windows.Forms.NumericUpDown();
             this.CandidatesInp = new System.Windows.Forms.NumericUpDown();
@@ -121,7 +121,7 @@ namespace WindowsFormsApp1
             this.ConditionsInp.Size = new System.Drawing.Size(120, 22);
             this.ConditionsInp.TabIndex = 4;
             this.ConditionsInp.Value = new decimal(new int[] {
-            50,
+            40,
             0,
             0,
             0});
@@ -202,14 +202,14 @@ namespace WindowsFormsApp1
             // 
             // chart1
             // 
-            chartArea1.Area3DStyle.Inclination = 60;
-            chartArea1.Area3DStyle.Rotation = 60;
-            chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisY.Maximum = 100D;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Area3DStyle.Inclination = 60;
+            chartArea2.Area3DStyle.Rotation = 60;
+            chartArea2.AxisX.LabelStyle.Enabled = false;
+            chartArea2.AxisY.Maximum = 100D;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(1, 107);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(849, 291);

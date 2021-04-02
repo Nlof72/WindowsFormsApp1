@@ -62,6 +62,7 @@ namespace WindowsFormsApp1
             //decimal[] totalPerHour = 
             stata[0] += j + " hour \n" ;
             float[] persentPerHour = election.statistics.ConvertToPercent();
+            string str = "";
             //OutPutBox.Text += stata[0];
 
             for (int i = 0; i < persentPerHour.Length; i++)
@@ -70,30 +71,33 @@ namespace WindowsFormsApp1
                 chart1.Series[i].Points.AddXY(i, persentPerHour[i]);
                 //Console.WriteLine(Math.Round(totalPerHour[i] /activePeople.GetActivePeople() *100,2));              
                 stata[0] += "Condidate number - "+(i+1) + "\nVoice percent: "+ Math.Round(persentPerHour[i],2)+"% \n";
+
             }
             if (j == 24) { 
                 timer1.Stop();
                 PopulationInp.Value = activePeople.ChangePopulation(PopulationInp.Value);
                 CurrentLifeInp.Value +=  activePeople.ChangeLifeLevel();
                 Start.Enabled = true;
-                stata[0] += "\n";
-                OutPutBox.Text += stata[0];
+
                 int t = election.ChoseWinner(activePeople.difference);
-                OutPutBox.Text += "\n\n----Summary----\n\n";
+                str += "\n\n----Summary----\n\n";
+                str += "\nTurnout is " + activePeople.turnout * 100 + "%\n";
                 if (t == 0) {
                     CandidatesInp.Value = election.ReElection();
-                    OutPutBox.Text += "Need RE-Election!!!!!";
+                    str += "Need RE-Election!!!!!";
                     //Console.WriteLine("RE-Election!!!!!");
 
                 }
                 else {
-                    OutPutBox.Text += "Candidate " + t + " is winner!!!!";
+                    str += "Candidate " + t + " is winner!!!!";
                     //Console.WriteLine("Candidate " + t + " is winner!!!!");
                     CandidatesInp.Enabled = true;
                 }
                 
             }
-  
+            OutPutBox.Text += stata[0];
+            OutPutBox.Text +=str;
+
         }
 
         private void Reset_Click(object sender, EventArgs e)

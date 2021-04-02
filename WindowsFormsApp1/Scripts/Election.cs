@@ -34,7 +34,8 @@ namespace WindowsFormsApp1
             {
                 if (voice[i] >= 20) { y++; }
             }
-            return y;
+            
+            return y>=2?y:2;
         }
 
         public int ChoseWinner(float turnout )
