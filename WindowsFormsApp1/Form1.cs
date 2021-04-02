@@ -60,7 +60,6 @@ namespace WindowsFormsApp1
             j++;
             election.statistics.Step();
             //decimal[] totalPerHour = 
-            stata[0] += j + " hour \n" ;
             float[] persentPerHour = election.statistics.ConvertToPercent();
             string str = "";
             //OutPutBox.Text += stata[0];
@@ -69,26 +68,25 @@ namespace WindowsFormsApp1
             {
                 chart1.Series[i].Points.Clear();
                 chart1.Series[i].Points.AddXY(i, persentPerHour[i]);           
-                stata[0] += $"Condidate number - {(i + 1)}\nVoice percent: {Math.Round(persentPerHour[i], 2)}% \n";
+               
             }
             if (j == 24) { 
                 timer1.Stop();
                 PopulationInp.Value = activePeople.ChangePopulation(PopulationInp.Value);
                 CurrentLifeInp.Value +=  activePeople.ChangeLifeLevel();
                 Start.Enabled = true;
-
+                for(int i = 0; i < persentPerHour.Length; i++) stata[0] += $"Condidate number - {(i + 1)}\nVoice percent: {Math.Round(persentPerHour[i], 2)}% \n";
                 int t = election.ChoseWinner(activePeople.difference);
                 str += "\n\n----Summary----\n\n";
                 str += "\nTurnout is " + activePeople.turnout * 100 + "%\n";
                 if (t == 0) {
                     CandidatesInp.Value = election.ReElection();
-                    OutPutBox.Text += $"Insufficient voter turnout: {Math.Round(activePeople.difference,2)*100}%\n" +
-                        $"Percentage  of illegally thrown ballots:{election.statistics.FakeVoices}%\n" +
-                        $"Need RE-Election!!!!!";
+                    str += $"Percentage  of illegally thrown ballots:{election.statistics.FakeVoices}%\n" +
+                        "Need RE-Election!!!!!";
 
                 }
                 else {
-                    OutPutBox.Text += $"Candidate {t}  is winner!!!!";
+                    str += $"Candidate {t}  is winner!!!!";
                     CandidatesInp.Enabled = true;
                 }
                 
